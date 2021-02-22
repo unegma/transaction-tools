@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   createStyles,
   fade,
@@ -8,7 +8,7 @@ import {
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 
-const useStylesReddit = makeStyles((theme: Theme) =>
+const useStylesInput = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& > *': {
@@ -33,17 +33,6 @@ const useStylesReddit = makeStyles((theme: Theme) =>
   }),
 );
 
-function InputTextField(props: TextFieldProps) {
-  const classes = useStylesReddit();
-
-  return (
-    <TextField
-      InputProps={{ classes, disableUnderline: true } as Partial<OutlinedInputProps>}
-      {...props}
-    />
-  );
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -56,15 +45,34 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+function InputTextField(props: TextFieldProps) {
+  const classes = useStylesInput();
+
+  return (
+    <TextField
+      InputProps={{ classes, disableUnderline: true } as Partial<OutlinedInputProps>}
+      {...props}
+    />
+  );
+}
+
 export default function CustomizedInputs() {
   const classes = useStyles();
+  const [tx, setTx] = useState("");
+
+  const onChangeHandler = (event: any) => {
+    setTx(event.target.value);
+    console.log(tx);
+  }
 
   return (
     <form className={classes.root} noValidate>
       <InputTextField
         label="TransactionID"
         className={classes.margin}
-        defaultValue=""
+        type="text"
+        value={tx}
+        onChange={onChangeHandler}
         variant="filled"
         id="main-input"
       />
