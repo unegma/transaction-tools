@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   createStyles,
   fade,
@@ -60,9 +60,12 @@ export default function CustomizedInputs() {
   const classes = useStyles();
   const [tx, setTx] = useState("");
 
+  useEffect(() => {
+    console.log(tx);
+  }, [tx]);
+
   const onChangeHandler = (event: any) => {
     setTx(event.target.value);
-    console.log(tx);
   }
 
   return (
