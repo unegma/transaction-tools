@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import queryString from "queryString";
+
 import {
   createStyles,
   fade,
@@ -7,6 +9,7 @@ import {
 } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
+import Web3 from "web3";
 
 const useStylesInput = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,9 +59,25 @@ function InputTextField(props: TextFieldProps) {
   );
 }
 
-export default function CustomizedInputs() {
+type MainInputProps = {
+  web3: Web3
+}
+
+export default function MainInput(props: MainInputProps) {
+  const {
+    web3
+  } = props;
+
+  console.log(web3);
+
   const classes = useStyles();
   const [tx, setTx] = useState("");
+
+  // const onSetTx = useCallback(
+  //   newValue => {
+  //     set
+  //   }
+  // )
 
   useEffect(() => {
     console.log(tx);
