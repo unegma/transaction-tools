@@ -59,16 +59,16 @@ function InputTextField(props: TextFieldProps) {
   );
 }
 
-type MainInputProps = {
-  web3: Web3
+type ComponentProps = {
+  componentProps: {
+    web3: Web3
+  }
 }
 
-export default function MainInput(props: MainInputProps) {
+export default function MainInput(props: ComponentProps) {
   const {
     web3
-  } = props;
-
-  console.log(web3);
+  } = props.componentProps;
 
   const classes = useStyles();
   const [tx, setTx] = useState("");

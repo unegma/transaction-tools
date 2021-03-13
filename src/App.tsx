@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-body">
-        <MainInput web3={web3}></MainInput>
+        <MainInput componentProps={{web3}}></MainInput>
       </div>
     </div>
   );
