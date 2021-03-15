@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import queryString from "queryString";
-
 import {
   createStyles,
   fade,
@@ -10,6 +8,9 @@ import {
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 import Web3 from "web3";
+
+
+const ERC721ABI  = require("../ABIs/ERC721.json");
 
 const useStylesInput = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,6 +73,7 @@ export default function MainInput(props: ComponentProps) {
 
   const classes = useStyles();
   const [tx, setTx] = useState("");
+  const [owner, setOwner] = useState("");
 
   // const onSetTx = useCallback(
   //   newValue => {
@@ -83,8 +85,17 @@ export default function MainInput(props: ComponentProps) {
     console.log(tx);
   }, [tx]);
 
-  const onChangeHandler = (event: any) => {
+  const onChangeHandler = async (event: any) => {
     setTx(event.target.value);
+
+    try {
+      // const contract = new web3.eth.Contract(ERC721ABI, event.target.value);
+      const owner = web3.eth.ens.getAddress(event.target.value);
+      // setOwner(owner);
+      console.log(owner)
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (
