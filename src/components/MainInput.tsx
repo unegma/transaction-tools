@@ -8,7 +8,7 @@ import {
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 import Web3 from "web3";
-
+import ENS, { getEnsAddress } from '@ensdomains/ensjs';
 
 const ERC721ABI  = require("../ABIs/ERC721.json");
 
@@ -92,6 +92,11 @@ export default function MainInput(props: ComponentProps) {
       // const contract = new web3.eth.Contract(ERC721ABI, event.target.value);
       const owner = web3.eth.ens.getAddress(event.target.value);
       // setOwner(owner);
+
+      // const ens = new ENS({ provider, ensAddress: getEnsAddress('1') })
+      // ens.name('resolver.eth').getAddress() // 0x123
+
+
       console.log(owner)
     } catch (e) {
       console.error(e);
