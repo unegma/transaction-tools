@@ -9,6 +9,7 @@ import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 import Web3 from "web3";
 import ENS, { getEnsAddress } from '@ensdomains/ensjs';
+import { provider } from 'web3-core';
 
 const ERC721ABI  = require("../ABIs/ERC721.json");
 
@@ -62,7 +63,7 @@ function InputTextField(props: TextFieldProps) {
 
 type ComponentProps = {
   componentProps: {
-    web3: any
+    web3: provider
   }
 }
 
