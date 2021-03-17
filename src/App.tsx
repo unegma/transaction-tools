@@ -3,7 +3,7 @@ import './App.css';
 import MainInput from "./components/MainInput";
 import Web3 from "web3";
 const INFURA_APP_KEY="c21e9e5987664f8c963c179d9bd87fa0"; // not secret key // todo restrict to only transaction.tools
-const INFURA_ENDPOINT="wss://mainnet.infura.io/ws/v3/";
+const INFURA_ENDPOINT="wss://mainnet.infura.io/ws/v3/"; // todo what it the advantage of needing full-duplex communication in an app like this?
 
 const web3 = new Web3(
   new Web3.providers.WebsocketProvider(
