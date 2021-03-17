@@ -62,7 +62,7 @@ function InputTextField(props: TextFieldProps) {
 
 type ComponentProps = {
   componentProps: {
-    web3: Web3
+    web3: any
   }
 }
 
@@ -90,14 +90,15 @@ export default function MainInput(props: ComponentProps) {
 
     try {
       // const contract = new web3.eth.Contract(ERC721ABI, event.target.value);
-      const owner = web3.eth.ens.getAddress(event.target.value);
+      // const owner = web3.eth.ens.getAddress(event.target.value);
       // setOwner(owner);
 
-      // const ens = new ENS({ provider, ensAddress: getEnsAddress('1') })
-      // ens.name('resolver.eth').getAddress() // 0x123
+      const provider = web3;
+      const ens = new ENS({ provider, ensAddress: getEnsAddress('1') })
+      const address = await ens.name('vitalik.eth').getAddress(); // 0x123
 
 
-      console.log(owner)
+      console.log(address)
     } catch (e) {
       console.error(e);
     }
