@@ -63,7 +63,8 @@ function InputTextField(props: TextFieldProps) {
 
 type ComponentProps = {
   componentProps: {
-    web3: provider
+    web3: any
+    // web3: provider // for ens
   }
 }
 
@@ -94,12 +95,15 @@ export default function MainInput(props: ComponentProps) {
       // const owner = web3.eth.ens.getAddress(event.target.value);
       // setOwner(owner);
 
-      const provider = web3;
+      const provider = web3.eth._provider; // todo is there a better way to get the provider from the web3 object?
       const ens = new ENS({ provider, ensAddress: getEnsAddress('1') })
-      const address = await ens.name('vitalik.eth').getAddress(); // 0x123
+      const test = await ens.name('vitalik.eth').getAddress(); // 0x123
 
+      // const test = await web3.eth.getProof(address, storageKey, blockNumber, [callback])
+      // const test = await web3.eth.getBlockNumber()
 
-      console.log(address)
+      // console.log(address)
+      console.log(test)
     } catch (e) {
       console.error(e);
     }
